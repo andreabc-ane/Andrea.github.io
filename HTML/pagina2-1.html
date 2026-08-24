@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title>Página 2</title>
+   <style>
+    body {
+        background-color:#8fbc8f;
+        text-align: center;
+        font-family: Verdana, sans-serif;
+        padding: 40px;
+    }
+
+    h1{
+        color: #fff8dc;
+    }
+
+    h2 {
+        color:#fff8dc;
+        font-variant: small-caps;
+    }
+
+    p {
+        color:#191b38;
+        font-size: 40px;
+        font-family: Verdana, sans-serif;
+    }
+
+    a {
+        color: #fff8dc;
+        font-size: 18px;
+    }
+
+    </style>
+    <script>
+        function init(){
+            var nombreactor = document.getElementById("bestactor");
+            nombreactor.innerHTML = "Wagner Moura";
+
+            var nombredrama = document.getElementById("bestdrama");
+            nombredrama.innerHTML = "Hamnet";
+
+            var nombrecomedy = document.getElementById("bestcomedy");
+            nombrecomedy.innerHTML = "One Battle After Another";
+
+            var nombreactress = document.getElementById("bestactress")
+            nombreactress.innerHTML = "Jessie Buckley";
+        }
+        window.onload = init;
+    </script>
+
+ </head>
+ <body>
+     <h1>Golden Globe Winners 2026</h1>
+ </br>
+     <h2>Best Motion Picture - Drama</h2>
+     <p id="bestdrama">Name Drama</p>
+ </br>
+     <h2>Best Motion Picture - Musical or Comedy</h2>
+     <p id="bestcomedy">Name Comedy</p>
+ </br>
+     <h2>Best performance by an actress in a motion picture - drama</h2>
+     <p id="bestactress">Name Actress</p>
+ </br>
+     <h2>Best performance by an actor in a motion picture - drama</h2>
+     <p id="bestactor">Name Actor</p>
+     
+  <ol>
+     <li><a href="index.html">Página básica con imagen</a></li>
+  </ol>
+
+ </body>
+</html>
+
