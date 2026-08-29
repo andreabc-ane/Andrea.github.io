@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+ <head>
+
+   <meta charset="utf-8">
+   <title>Pagina 3 - Hoja de Maple</title>
+
+   <style>
+       canvas{
+           border: 1px solid #8fbc8f;
+           background-color: rgb(181, 92, 92);
+       }
+   </style>
+
+   <script>
+       var x = 300
+       var y = -150;
+
+       var dx = 4; 
+       var dy = 8;
+
+       function dibujarHoja(context, x, y) {
+       
+        // Tallo de la hoja 
+       context.fillStyle = "brown"; 
+       context.fillRect(x + 60, y + 120, 20, 80);
+
+       // Hoja de Maple
+       context.fillStyle = "red";
+
+       // Parte central
+       context.fillRect(x + 50, y + 30, 40, 120);
+
+       // Parte superior izquierda
+       context.fillRect(x + 20, y + 45, 50, 60);
+
+       // Parte superior derecha
+       context.fillRect(x + 70, y + 40, 50, 60);
+
+       // Parte izquierda
+       context.fillRect(x, y + 75, 60, 45);
+
+       // Parte derecha
+       context.fillRect(x + 80, y + 75, 60, 45);
+
+       // Parte inferior izquierda
+       context.fillRect(x + 20, y + 105, 50, 45);
+
+       // Parte inferior derecha 
+       context.fillRect(x + 70, y + 105, 50, 45);
+
+       // Punta superior 
+       context.fillRect(x + 60, y, 20, 60);
+
+       // Detalles de la hoja 
+       context.fillStyle = "darkred"; 
+       context.fillRect(x + 60, y + 45, 20, 50);
+       context.fillRect(x + 30, y + 75, 20, 15); 
+       context.fillRect(x + 80, y + 75, 20, 15);
+
+       }
+       
+       function animate() { 
+        requestAnimationFrame(animate);
+
+        var canvas = document.getElementById("micanvas"); 
+        var context = canvas.getContext("2d");
+
+        // Limpiar el canvas 
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Dibujar la hoja 
+        dibujarHoja(context, x, y);
+
+        // Movimiento vertical 
+        y += dy;
+
+        // Movimiento horizontal 
+        x += dx;
+
+        // Cambiar dirección horizontal 
+        if (x > 690 || x < 0) { dx = -dx; }
+        
+       }
+
+       // Cuando la hoja llega al final, /
+       // vuelve a aparecer arriba 
+       if (y > 600) {
+            y = -130; 
+            x = Math.random() * 700;
+       }
+    
+        // Iniciar animación
+        animate();
+
+   </script>
+   </head>
+
+ <body>
+
+    <h1>Hoja de Maple animada</h1>
+    <canvas id="micanvas" width="800" height="600"></canvas>
+
+ </body>
+</html>
