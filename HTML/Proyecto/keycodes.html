@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Key Moods</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+
+            background: linear-gradient(
+                135deg,
+                #d8c7ff,
+                #b8e8e8
+            );
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: #29263d;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .small-title {
+            font-size: 12px;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            opacity: 0.6;
+        }
+
+        h1 {
+            font-size: 60px;
+            letter-spacing: 8px;
+            margin-bottom: 10px;
+        }
+
+        .instructions {
+            font-size: 17px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.9);
+
+            width: 100%;
+            max-width: 700px;
+
+            margin: auto;
+            padding: 25px;
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.15);
+
+            transition: 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .image-container {
+            width: 100%;
+
+            /* MÁS VERTICAL */
+            height: 500px;
+
+            overflow: hidden;
+            border-radius: 18px;
+
+            margin-bottom: 25px;
+
+            background-color: #eeeeee;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: 0.4s ease;
+        }
+
+        .text-container h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .text-container p {
+            font-size: 17px;
+            opacity: 0.7;
+        }
+
+        .keys {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+
+            margin-top: 30px;
+        }
+
+        .key {
+            width: 55px;
+            height: 55px;
+
+            background-color: white;
+
+            border-radius: 12px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-weight: bold;
+            font-size: 20px;
+
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, 0.15);
+
+            transition: 0.2s;
+        }
+
+        .key:hover {
+            transform: translateY(-4px);
+        }
+
+        .bottom-text {
+            margin-top: 20px;
+
+            font-size: 13px;
+            letter-spacing: 2px;
+
+            opacity: 0.5;
+        }
+
+        @media (max-width: 600px) {
+
+            h1 {
+                font-size: 40px;
+                letter-spacing: 5px;
+            }
+
+            .image-container {
+                height: 350px;
+            }
+
+            .text-container h2 {
+                font-size: 25px;
+            }
+
+            .keys {
+                gap: 8px;
+            }
+
+            .key {
+                width: 45px;
+                height: 45px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <main class="container">
+
+        <p class="small-title">
+            INTERACTIVE EXPERIENCE
+        </p>
+
+        <h1>
+            KEY MOODS
+        </h1>
+
+        <p class="instructions">
+            Presiona una tecla y descubre un nuevo mood ✨
+        </p>
+
+
+        <div class="card">
+
+            <div class="image-container">
+
+                <img
+                    id="imagen"
+                    src="alegre.jpg"
+                    alt="Mood"
+                >
+
+            </div>
+
+
+            <div class="text-container">
+
+                <h2 id="titulo">
+                    A de Alegre
+                </h2>
+
+                <p id="descripcion">
+                    Un mood lleno de color, energía y buenas vibras.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="keys">
+
+            <div class="key">A</div>
+            <div class="key">B</div>
+            <div class="key">C</div>
+            <div class="key">D</div>
+            <div class="key">F</div>
+
+        </div>
+
+
+        <p class="bottom-text">
+            PRESS A KEY TO CHANGE THE MOOD
+        </p>
+
+    </main>
+
+
+    <script>
+
+        var imagen = document.getElementById("imagen");
+        var titulo = document.getElementById("titulo");
+        var descripcion = document.getElementById("descripcion");
+
+
+        function cambiarMood(
+            nuevoTitulo,
+            nuevaDescripcion,
+            nuevaImagen
+        ) {
+
+            titulo.textContent = nuevoTitulo;
+
+            descripcion.textContent = nuevaDescripcion;
+
+            imagen.src = nuevaImagen;
+
+        }
+
+
+        window.addEventListener(
+            "keydown",
+            function(event) {
+
+                var tecla = event.key.toLowerCase();
+
+
+                // A = ALEGRE
+
+                if (tecla === "a") {
+
+                    cambiarMood(
+                        "A de Alegre",
+                        "Un mood lleno de color, energía y buenas vibras.",
+                        "alegre.jpg"
+                    );
+
+                }
+
+
+                // B = BEACH
+
+                else if (tecla === "b") {
+
+                    cambiarMood(
+                        "B de Beach",
+                        "Un mood tranquilo que se siente como estar frente al mar.",
+                        "playa.jpg"
+                    );
+
+                }
+
+
+                // C = CREATIVO
+
+                else if (tecla === "c") {
+
+                    cambiarMood(
+                        "C de Creativo",
+                        "Ideas, colores y creatividad sin límites.",
+                        "creativo.jpg"
+                    );
+
+                }
+
+
+                // D = DREAMY
+
+                else if (tecla === "d") {
+
+                    cambiarMood(
+                        "D de Dreamy",
+                        "Un mood tranquilo, soñador y un poquito mágico.",
+                        "dreamy.jpg"
+                    );
+
+                }
+
+
+                // F = FUN
+
+                else if (tecla === "f") {
+
+                    cambiarMood(
+                        "F de Fun",
+                        "Porque a veces simplemente hay que disfrutar y divertirse.",
+                        "divertido.jpg"
+                    );
+
+                }
+
+
+                // ESPACIO = SORPRESA
+
+                else if (tecla === " ") {
+
+                    cambiarMood(
+                        "SURPRISE ✨",
+                        "Presionaste espacio. ¡Nunca sabes qué mood puede aparecer!",
+                        "alegre.jpg"
+                    );
+
+                }
+
+            }
+
+        );
+
+    </script>
+
+</body>
+
+</html>
