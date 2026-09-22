@@ -23,20 +23,27 @@ body {
     #b8e8e8
   );
 
+  color: #29263d;
+
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
-  color: #29263d;
+  text-align: center;
+
+  padding: 40px 20px;
 }
 
 
 /* Main container */
 
 .container {
-  width: 90%;
-  max-width: 600px;
-  text-align: center;
+  width: 100%;
+  max-width: 1100px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
@@ -45,7 +52,9 @@ body {
 .small-title {
   font-size: 12px;
   letter-spacing: 4px;
+
   margin-bottom: 10px;
+
   opacity: 0.6;
 }
 
@@ -53,9 +62,10 @@ body {
 /* Main title */
 
 h1 {
-  font-size: 50px;
-  letter-spacing: 6px;
-  margin-bottom: 10px;
+  font-size: 60px;
+  letter-spacing: 8px;
+
+  margin-bottom: 15px;
 }
 
 
@@ -63,6 +73,7 @@ h1 {
 
 .instructions {
   font-size: 17px;
+
   margin-bottom: 30px;
 }
 
@@ -73,15 +84,19 @@ h1 {
   background-color: rgba(255, 255, 255, 0.9);
 
   width: 100%;
-  max-width: 500px;
+  max-width: 1050px;
 
-  margin: auto;
+  margin: 0 auto;
   padding: 25px;
 
   border-radius: 25px;
 
   box-shadow:
     0 15px 40px rgba(0, 0, 0, 0.15);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   transition: 0.3s ease;
 }
@@ -91,13 +106,17 @@ h1 {
 }
 
 
-/* Image */
+/* Canvas / Image */
 
 .image-container {
   width: 100%;
-  height: 400px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   overflow: hidden;
+
   border-radius: 18px;
 
   margin-bottom: 25px;
@@ -115,16 +134,42 @@ h1 {
 }
 
 
+/* Canvas */
+
+canvas {
+  display: block;
+
+  max-width: 100%;
+  height: auto;
+
+  margin: 0 auto 25px auto;
+}
+
+
 /* Text */
 
+.text-container {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
 .text-container h2 {
-  font-size: 30px;
+  font-size: 32px;
+
   margin-bottom: 10px;
 }
 
 .text-container p {
   font-size: 17px;
+
   opacity: 0.7;
+
+  margin-bottom: 20px;
 }
 
 
@@ -132,8 +177,11 @@ h1 {
 
 .keys {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+
+  flex-direction: row;
+
   gap: 15px;
 
   margin-top: 30px;
@@ -171,9 +219,33 @@ h1 {
   margin-top: 20px;
 
   font-size: 13px;
+
   letter-spacing: 2px;
 
   opacity: 0.5;
+
+  text-align: center;
+}
+
+
+/* Return to menu */
+
+a {
+  display: block;
+
+  margin-top: 30px;
+
+  text-align: center;
+
+  color: #29263d;
+
+  text-decoration: none;
+
+  font-size: 16px;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 
@@ -182,11 +254,7 @@ h1 {
 @media (max-width: 600px) {
 
   body {
-    padding: 30px 0;
-  }
-
-  .container {
-    width: 90%;
+    padding: 30px 10px;
   }
 
   h1 {
@@ -202,25 +270,21 @@ h1 {
     padding: 20px;
   }
 
-  .image-container {
-    height: 350px;
+  canvas {
+    max-width: 100%;
+    height: auto;
   }
 
   .text-container h2 {
     font-size: 25px;
   }
 
-  .text-container p {
-    font-size: 15px;
-  }
-
   .keys {
-    gap: 10px;
+    gap: 8px;
   }
 
   .key {
     width: 45px;
     height: 45px;
   }
-
 }
