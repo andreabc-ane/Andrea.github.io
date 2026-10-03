@@ -1,0 +1,744 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Figuras Canvas API</title>
+
+
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+    <p class="small-title">CANVAS API</p>
+
+    <h1>FIGURAS</h1>
+
+    <p class="instructions">
+        Figuras realizadas utilizando métodos del Canvas API
+    </p>
+
+
+    <!-- ==========================================
+         CASITA
+    =========================================== -->
+
+    <div class="card">
+
+        <div class="figure-title">
+            <h2>Casita</h2>
+        </div>
+
+        <canvas id="casa" width="700" height="350"></canvas>
+
+    </div>
+
+
+    <!-- ==========================================
+         HONGUITO
+    =========================================== -->
+
+    <div class="card">
+
+        <div class="figure-title">
+            <h2>Honguito</h2>
+        </div>
+
+        <canvas id="hongo" width="700" height="350"></canvas>
+
+    </div>
+
+
+    <!-- ==========================================
+         ESTRELLA
+    =========================================== -->
+
+    <div class="card">
+
+        <div class="figure-title">
+            <h2>Estrella</h2>
+        </div>
+
+        <canvas id="estrella" width="700" height="350"></canvas>
+
+    </div>
+
+
+    <!-- ==========================================
+         LUNA
+    =========================================== -->
+
+    <div class="card">
+
+        <div class="figure-title">
+            <h2>Luna</h2>
+        </div>
+
+        <canvas id="luna" width="700" height="350"></canvas>
+
+    </div>
+
+
+    <!-- ==========================================
+         FIGURA LIBRE
+    =========================================== -->
+
+    <div class="card">
+
+        <div class="figure-title">
+            <h2>Libre</h2>
+        </div>
+
+        <canvas id="corazon" width="700" height="350"></canvas>
+
+    </div>
+
+
+    <!-- ==========================================
+         ZORRITO CETYS
+    =========================================== -->
+
+    <div class="card">
+
+        <div class="figure-title">
+            <h2>Zorrito CETYS</h2>
+        </div>
+
+        <canvas id="zorro" width="700" height="400"></canvas>
+
+    </div>
+
+
+    <p class="bottom-text">
+        ACTIVIDAD · CANVAS API
+    </p>
+
+</div>
+
+
+<script>
+
+window.onload = function () {
+
+
+    // =====================================================
+    // 🏠 CASITA
+    // =====================================================
+
+    var canvas = document.getElementById("casa");
+    var context = canvas.getContext("2d");
+
+    context.fillStyle = "#bde7f5";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+
+    // Degradado de la casa
+    var houseGradient = context.createLinearGradient(
+        220, 100,
+        480, 300
+    );
+
+    houseGradient.addColorStop(0, "#ff9a9e");
+    houseGradient.addColorStop(1, "#fad0c4");
+
+    context.fillStyle = houseGradient;
+    context.strokeStyle = "#4b286d";
+    context.lineWidth = 5;
+
+
+    // Cuerpo de la casa
+    context.beginPath();
+
+    context.rect(
+        230,
+        155,
+        240,
+        150
+    );
+
+    context.fill();
+    context.stroke();
+
+
+    // Techo
+    var roofGradient = context.createLinearGradient(
+        200, 80,
+        500, 180
+    );
+
+    roofGradient.addColorStop(0, "#8e2de2");
+    roofGradient.addColorStop(1, "#4a00e0");
+
+    context.fillStyle = roofGradient;
+
+    context.beginPath();
+
+    context.moveTo(200, 160);
+    context.lineTo(350, 65);
+    context.lineTo(500, 160);
+
+    context.closePath();
+
+    context.fill();
+    context.stroke();
+
+
+    // Puerta
+    var doorGradient = context.createLinearGradient(
+        325, 210,
+        375, 305
+    );
+
+    doorGradient.addColorStop(0, "#667eea");
+    doorGradient.addColorStop(1, "#764ba2");
+
+    context.fillStyle = doorGradient;
+
+    context.beginPath();
+
+    context.rect(
+        325,
+        215,
+        50,
+        90
+    );
+
+    context.fill();
+    context.stroke();
+
+
+    // Ventanas pequeñas
+    var windowGradient = context.createLinearGradient(
+        0, 0,
+        50, 50
+    );
+
+    windowGradient.addColorStop(0, "#89f7fe");
+    windowGradient.addColorStop(1, "#66a6ff");
+
+    context.fillStyle = windowGradient;
+
+
+    // Ventana izquierda
+    context.beginPath();
+
+    context.rect(
+        255,
+        205,
+        45,
+        45
+    );
+
+    context.fill();
+    context.stroke();
+
+
+    context.beginPath();
+
+    context.moveTo(277, 205);
+    context.lineTo(277, 250);
+
+    context.moveTo(255, 227);
+    context.lineTo(300, 227);
+
+    context.stroke();
+
+
+    // Ventana derecha
+    context.beginPath();
+
+    context.rect(
+        400,
+        205,
+        45,
+        45
+    );
+
+    context.fill();
+    context.stroke();
+
+
+    context.beginPath();
+
+    context.moveTo(422, 205);
+    context.lineTo(422, 250);
+
+    context.moveTo(400, 227);
+    context.lineTo(445, 227);
+
+    context.stroke();
+
+
+
+    // =====================================================
+    // 🍄 HONGUITO
+    // =====================================================
+
+    canvas = document.getElementById("hongo");
+    context = canvas.getContext("2d");
+
+    context.fillStyle = "#d9f2d9";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+
+    // Tallo
+    var stemGradient = context.createLinearGradient(
+        260, 190,
+        440, 315
+    );
+
+    stemGradient.addColorStop(0, "#fffbd5");
+    stemGradient.addColorStop(1, "#f7d794");
+
+    context.fillStyle = stemGradient;
+    context.strokeStyle = "#4b286d";
+    context.lineWidth = 5;
+
+    context.beginPath();
+
+    context.moveTo(275, 215);
+
+    context.lineTo(275, 295);
+
+    context.quadraticCurveTo(
+        275,
+        325,
+        350,
+        325
+    );
+
+    context.quadraticCurveTo(
+        425,
+        325,
+        425,
+        295
+    );
+
+    context.lineTo(425, 215);
+
+    context.closePath();
+
+    context.fill();
+    context.stroke();
+
+
+    // Sombrero ancho
+    var mushroomGradient = context.createRadialGradient(
+        350, 150, 10,
+        350, 180, 170
+    );
+
+    mushroomGradient.addColorStop(0, "#ff6a88");
+    mushroomGradient.addColorStop(1, "#c31432");
+
+    context.fillStyle = mushroomGradient;
+
+
+    context.beginPath();
+
+    context.moveTo(210, 225);
+
+    context.quadraticCurveTo(
+        220,
+        110,
+        350,
+        110
+    );
+
+    context.quadraticCurveTo(
+        480,
+        110,
+        490,
+        225
+    );
+
+    context.quadraticCurveTo(
+        350,
+        255,
+        210,
+        225
+    );
+
+    context.closePath();
+
+    context.fill();
+    context.stroke();
+
+
+    // Puntos
+    var spotsGradient = context.createRadialGradient(
+        350, 150, 2,
+        350, 150, 20
+    );
+
+    spotsGradient.addColorStop(0, "#ffffff");
+    spotsGradient.addColorStop(1, "#ffe6f0");
+
+    context.fillStyle = spotsGradient;
+
+
+    context.beginPath();
+    context.arc(285, 165, 16, 0, Math.PI * 2);
+    context.fill();
+
+
+    context.beginPath();
+    context.arc(415, 175, 18, 0, Math.PI * 2);
+    context.fill();
+
+
+    context.beginPath();
+    context.arc(350, 140, 13, 0, Math.PI * 2);
+    context.fill();
+
+
+
+    // =====================================================
+    // ⭐ ESTRELLA
+    // =====================================================
+
+    canvas = document.getElementById("estrella");
+    context = canvas.getContext("2d");
+
+    context.fillStyle = "#080808";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+
+    var starGradient = context.createLinearGradient(
+        220, 70,
+        480, 300
+    );
+
+    starGradient.addColorStop(0, "#fff200");
+    starGradient.addColorStop(0.5, "#ffb347");
+    starGradient.addColorStop(1, "#ff6f61");
+
+    context.fillStyle = starGradient;
+
+
+    var centerX = 350;
+    var centerY = 180;
+
+    var outerRadius = 125;
+    var innerRadius = 55;
+
+
+    context.beginPath();
+
+    for (var i = 0; i < 10; i++) {
+
+        var angle = -Math.PI / 2 + i * Math.PI / 5;
+
+        var radius;
+
+        if (i % 2 === 0) {
+            radius = outerRadius;
+        } else {
+            radius = innerRadius;
+        }
+
+        var x = centerX + Math.cos(angle) * radius;
+        var y = centerY + Math.sin(angle) * radius;
+
+
+        if (i === 0) {
+            context.moveTo(x, y);
+        } else {
+            context.lineTo(x, y);
+        }
+
+    }
+
+    context.closePath();
+
+    context.fill();
+
+
+
+    // =====================================================
+    // 🌙 LUNA
+    // =====================================================
+
+    canvas = document.getElementById("luna");
+    context = canvas.getContext("2d");
+
+    // Fondo azul marino
+    context.fillStyle = "#101b3f";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+
+    // Degradado de la luna
+    var moonGradient = context.createLinearGradient(
+        210, 70,
+        470, 300
+    );
+
+    moonGradient.addColorStop(0, "#ffffff");
+    moonGradient.addColorStop(0.5, "#d9e7ff");
+    moonGradient.addColorStop(1, "#8fa8ff");
+
+    context.fillStyle = moonGradient;
+
+
+    /*
+       Luna creada directamente con dos arcos.
+
+       El primer arco forma la parte exterior
+       de la luna.
+
+       El segundo arco forma la parte interior
+       y deja la forma de media luna.
+    */
+
+    context.beginPath();
+
+
+    // Parte exterior de la luna
+    context.arc(
+        350,
+        180,
+        125,
+        -Math.PI / 2,
+        Math.PI / 2,
+        true
+    );
+
+
+    // Parte interior de la luna
+    context.arc(
+        405,
+        180,
+        105,
+        Math.PI / 2,
+        -Math.PI / 2,
+        false
+    );
+
+
+    context.closePath();
+
+    context.fill();
+
+
+
+    // =====================================================
+    // ❤️ FIGURA LIBRE - CORAZÓN
+    // =====================================================
+
+    canvas = document.getElementById("corazon");
+    context = canvas.getContext("2d");
+
+    context.fillStyle = "#ffd9e6";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+
+    var heartGradient = context.createLinearGradient(
+        250, 70,
+        450, 300
+    );
+
+    heartGradient.addColorStop(0, "#ff9aaf");
+    heartGradient.addColorStop(0.5, "#ff4b6e");
+    heartGradient.addColorStop(1, "#c31432");
+
+    context.fillStyle = heartGradient;
+    context.strokeStyle = "#7a1648";
+    context.lineWidth = 5;
+
+
+    // Corazón menos ancho
+    context.beginPath();
+
+    context.moveTo(350, 300);
+
+    context.bezierCurveTo(
+        330, 265,
+        240, 205,
+        250, 135
+    );
+
+    context.bezierCurveTo(
+        260, 80,
+        320, 85,
+        350, 145
+    );
+
+    context.bezierCurveTo(
+        380, 85,
+        440, 80,
+        450, 135
+    );
+
+    context.bezierCurveTo(
+        460, 205,
+        370, 265,
+        350, 300
+    );
+
+    context.closePath();
+
+    context.fill();
+    context.stroke();
+
+
+
+    // =====================================================
+    // 🦊 ZORRITO CETYS
+    // =====================================================
+
+    canvas = document.getElementById("zorro");
+    context = canvas.getContext("2d");
+
+
+    // Fondo naranja → amarillo
+    var foxBackground = context.createLinearGradient(
+        0, 0,
+        700, 400
+    );
+
+    foxBackground.addColorStop(0, "#ff7b00");
+    foxBackground.addColorStop(0.5, "#ffae00");
+    foxBackground.addColorStop(1, "#ffe45c");
+
+    context.fillStyle = foxBackground;
+
+    context.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    // Degradado del zorro
+    var foxGradient = context.createLinearGradient(
+        220, 80,
+        480, 330
+    );
+
+    foxGradient.addColorStop(0, "#fff000");
+    foxGradient.addColorStop(1, "#ffc800");
+
+    context.fillStyle = foxGradient;
+
+    context.strokeStyle = "#050505";
+    context.lineWidth = 14;
+    context.lineJoin = "miter";
+
+
+    // Forma principal
+    context.beginPath();
+
+    context.moveTo(210, 95);
+    context.lineTo(275, 125);
+    context.lineTo(320, 185);
+
+    context.lineTo(380, 185);
+    context.lineTo(425, 125);
+    context.lineTo(490, 95);
+
+    context.lineTo(480, 220);
+
+    context.lineTo(520, 270);
+    context.lineTo(430, 285);
+
+    context.lineTo(350, 370);
+
+    context.lineTo(270, 285);
+    context.lineTo(180, 270);
+
+    context.lineTo(220, 220);
+
+    context.closePath();
+
+    context.fill();
+    context.stroke();
+
+
+    // Interior de las orejas
+    context.fillStyle = "#050505";
+
+
+    // Oreja izquierda
+    context.beginPath();
+
+    context.moveTo(235, 120);
+    context.lineTo(270, 140);
+    context.lineTo(295, 185);
+    context.lineTo(250, 155);
+
+    context.closePath();
+
+    context.fill();
+
+
+    // Oreja derecha
+    context.beginPath();
+
+    context.moveTo(465, 120);
+    context.lineTo(430, 140);
+    context.lineTo(405, 185);
+    context.lineTo(450, 155);
+
+    context.closePath();
+
+    context.fill();
+
+
+    // Ojos circulares
+    context.fillStyle = "#050505";
+
+
+    context.beginPath();
+
+    context.arc(
+        285,
+        250,
+        12,
+        0,
+        Math.PI * 2
+    );
+
+    context.fill();
+
+
+    context.beginPath();
+
+    context.arc(
+        415,
+        250,
+        12,
+        0,
+        Math.PI * 2
+    );
+
+    context.fill();
+
+
+    // Nariz triangular invertida
+    context.beginPath();
+
+    context.moveTo(350, 315);
+
+    context.lineTo(330, 290);
+
+    context.lineTo(370, 290);
+
+    context.closePath();
+
+    context.fill();
+
+
+};
+
+</script>
+
+</body>
+</html>

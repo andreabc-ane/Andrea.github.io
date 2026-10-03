@@ -1,0 +1,164 @@
+/* Some HTML5 Tags */
+
+aside, footer, header, nav, section {
+display: block;
+}
+
+/* General */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+body {
+font-family: Arial, Helvetica, sans-serif;
+min-height: 100vh;
+
+background: linear-gradient(
+135deg,
+#d8c7ff,
+#b8e8e8
+);
+
+display: flex;
+justify-content: center;
+align-items: flex-start;
+
+color: #29263d;
+
+padding: 60px 0;
+}
+
+/* Main container */
+
+.container {
+width: 90%;
+max-width: 900px;
+text-align: center;
+}
+
+/* Small title */
+
+.small-title {
+font-size: 12px;
+letter-spacing: 4px;
+margin-bottom: 10px;
+opacity: 0.6;
+}
+
+/* Main title */
+
+h1 {
+font-size: 60px;
+letter-spacing: 8px;
+margin-bottom: 15px;
+}
+
+/* Instructions */
+
+.instructions {
+font-size: 17px;
+margin-bottom: 45px;
+}
+
+/* Main card */
+
+.card {
+background-color: rgba(255, 255, 255, 0.9);
+
+width: 100%;
+max-width: 760px;
+
+margin: 0 auto 50px auto;
+
+padding: 30px;
+
+border-radius: 25px;
+
+box-shadow:
+0 15px 40px rgba(0, 0, 0, 0.15);
+
+transition: 0.3s ease;
+}
+
+.card:hover {
+transform: translateY(-5px);
+}
+
+/* Figure title */
+
+.figure-title {
+margin-bottom: 25px;
+}
+
+.figure-title h2 {
+font-size: 30px;
+}
+
+/* Canvas */
+
+canvas {
+width: 100%;
+height: auto;
+
+display: block;
+
+margin: auto;
+
+border-radius: 18px;
+
+box-shadow:
+0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* Bottom text */
+
+.bottom-text {
+margin-top: 10px;
+
+font-size: 13px;
+letter-spacing: 2px;
+
+opacity: 0.5;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+
+body {
+padding: 35px 0;
+}
+
+h1 {
+font-size: 40px;
+letter-spacing: 5px;
+}
+
+.instructions {
+font-size: 15px;
+margin-bottom: 35px;
+}
+
+.card {
+padding: 15px;
+
+
+margin-bottom: 35px;
+
+border-radius: 18px;
+
+
+}
+
+.figure-title {
+margin-bottom: 20px;
+}
+
+.figure-title h2 {
+font-size: 25px;
+}
+
+}
