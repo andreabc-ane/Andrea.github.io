@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paint App Personalizado</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="encabezado">
+      <p class="eyebrow">TU ESPACIO CREATIVO</p>
+      <h1>Paint App</h1>
+      <p class="subtitulo">Elige tus colores, ajusta tus herramientas y dibuja lo que imagines.</p>
+    </header>
+
+    <section class="herramientas">
+      <div class="seccion">
+        <div class="titulo-fila">
+          <h2>Paleta de colores</h2>
+          <label class="selector-personalizado" title="Elegir cualquier color">
+            <input type="color" id="colorPersonalizado" value="#000000" aria-label="Elegir color personalizado">
+            <span>＋ Personalizar</span>
+          </label>
+        </div>
+        <div class="categorias" id="categorias">
+          <button type="button" class="categoria activa" data-grupo="basicos">Básicos</button>
+          <button type="button" class="categoria" data-grupo="pasteles">Pasteles</button>
+          <button type="button" class="categoria" data-grupo="calidos">Cálidos</button>
+          <button type="button" class="categoria" data-grupo="frios">Fríos</button>
+          <button type="button" class="categoria" data-grupo="tierra">Tierra</button>
+          <button type="button" class="categoria" data-grupo="vibrantes">Vibrantes</button>
+        </div>
+        <div class="muestras" id="muestras" aria-label="Muestras de colores"></div>
+        <p class="ayuda">Selecciona una categoría o utiliza “Personalizar” para elegir cualquier tono.</p>
+      </div>
+
+      <div class="seccion herramientas-dibujo">
+        <div class="herramienta">
+          <div class="titulo-fila">
+            <h2>Pluma</h2>
+            <span id="etiquetaPluma" class="estado-herramienta">7 px</span>
+          </div>
+          <div class="opciones-tamano" id="tamanosPluma">
+            <button type="button" data-size="3" class="tamano"><span class="vista-trazo fino"></span>Fino</button>
+            <button type="button" data-size="7" class="tamano activa"><span class="vista-trazo medio"></span>Medio</button>
+            <button type="button" data-size="13" class="tamano"><span class="vista-trazo grueso"></span>Grueso</button>
+            <button type="button" data-size="22" class="tamano"><span class="vista-trazo extra"></span>Extra</button>
+          </div>
+        </div>
+
+        <div class="herramienta">
+          <div class="titulo-fila">
+            <h2>Borrador</h2>
+            <span id="etiquetaBorrador" class="estado-herramienta">18 px</span>
+          </div>
+          <div class="opciones-tamano" id="tamanosBorrador">
+            <button type="button" data-size="10" class="tamano"><span class="vista-trazo fino"></span>Pequeño</button>
+            <button type="button" data-size="18" class="tamano activa"><span class="vista-trazo medio"></span>Medio</button>
+            <button type="button" data-size="30" class="tamano"><span class="vista-trazo grueso"></span>Grande</button>
+            <button type="button" data-size="45" class="tamano"><span class="vista-trazo extra"></span>Extra</button>
+          </div>
+          <button id="activarBorrador" type="button" class="boton boton-borrador">⌫ Activar borrador</button>
+        </div>
+
+        <div class="acciones">
+          <button id="activarPluma" type="button" class="boton boton-principal activo">✎ Usar pluma</button>
+          <button id="borrarTodo" type="button" class="boton boton-peligro">Borrar todo</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="zona-lienzo">
+      <div class="encabezado-lienzo">
+        <div><span class="indicador"></span><strong>Tu lienzo</strong></div>
+        <span id="estadoActual">Pluma · Negro · 7 px</span>
+      </div>
+      <canvas id="canvas" width="1400" height="800" aria-label="Lienzo para dibujar"></canvas>
+      <p class="ayuda lienzo-ayuda">Haz clic y arrastra para dibujar. También puedes usar el dedo en una pantalla táctil.</p>
+    </section>
+
+    <section class="guardar">
+      <div>
+        <h2>Guarda tu creación</h2>
+        <p>Descarga tu dibujo para conservarlo o entregarlo.</p>
+      </div>
+      <div class="acciones-descarga">
+        <button id="descargarPNG" class="boton boton-principal" type="button">↓ Descargar PNG</button>
+        <button id="descargarJPG" class="boton boton-neutro" type="button">↓ Descargar JPG</button>
+      </div>
+    </section>
+    <footer>Paint App Personalizado · Página 12</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
