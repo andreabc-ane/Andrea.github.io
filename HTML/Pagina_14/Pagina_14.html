@@ -1,0 +1,667 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Pilot | Simulación de Nave</title>
+
+    <style>
+    /* Some HTML5 Tags */
+
+aside, footer, header, nav, section {
+    display: block;
+}
+
+/* General */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+
+    background: linear-gradient(
+        135deg,
+        #d8c7ff,
+        #b8e8e8
+    );
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: #29263d;
+
+    padding: 60px 0;
+}
+
+/* Main container */
+
+main {
+    width: 90%;
+    max-width: 900px;
+    text-align: center;
+    margin: auto;
+}
+
+/* Small title */
+
+.logo {
+    font-size: 12px;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+    opacity: 0.7;
+    font-weight: bold;
+}
+
+/* Main title */
+
+.intro h1 {
+    font-size: 60px;
+    letter-spacing: 8px;
+    margin-bottom: 15px;
+    color: #29263d;
+}
+
+.intro h1 span {
+    color: #8064c9;
+}
+
+/* Instructions */
+
+.intro p {
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 45px;
+    color: #514b68;
+}
+
+/* Main card */
+
+.game-container {
+    background-color: rgba(255, 255, 255, 0.9);
+
+    width: 100%;
+    max-width: 760px;
+
+    margin: 0 auto 35px auto;
+    padding: 30px;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.15);
+
+    transition: 0.3s ease;
+}
+
+.game-container:hover {
+    transform: translateY(-5px);
+}
+
+/* Game information */
+
+.game-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-bottom: 20px;
+
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #625a80;
+}
+
+.live {
+    color: #429c91;
+    font-weight: bold;
+}
+
+/* Canvas */
+
+canvas {
+    width: 100%;
+    height: 480px;
+
+    display: block;
+    margin: auto;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* Controls */
+
+.controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.control-card {
+    padding: 18px 10px;
+
+    background: #f1edff;
+
+    border: 1px solid #e0d7ff;
+    border-radius: 15px;
+}
+
+.control-card strong {
+    display: block;
+
+    color: #8064c9;
+    font-size: 12px;
+    letter-spacing: 1px;
+
+    margin-bottom: 10px;
+}
+
+.control-card p {
+    color: #514b68;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* Buttons */
+
+.bottom {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+button {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+
+    border: none;
+    background: #8064c9;
+    color: white;
+
+    padding: 13px 20px;
+    border-radius: 12px;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background: #6550a5;
+    transform: translateY(-2px);
+}
+
+/* Bottom text */
+
+footer {
+    margin-top: 10px;
+
+    font-size: 11px;
+    letter-spacing: 2px;
+
+    opacity: 0.6;
+    text-align: center;
+
+    padding: 20px;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 35px 0;
+    }
+
+    main {
+        width: 92%;
+    }
+
+    .intro h1 {
+        font-size: 40px;
+        letter-spacing: 5px;
+    }
+
+    .intro p {
+        font-size: 15px;
+        margin-bottom: 35px;
+    }
+
+    .game-container {
+        padding: 15px;
+        margin-bottom: 35px;
+        border-radius: 18px;
+    }
+
+    canvas {
+        height: 360px;
+    }
+
+    .controls {
+        grid-template-columns: 1fr;
+    }
+
+    .control-card {
+        padding: 15px;
+    }
+
+    .game-top {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">✦ COSMIC PILOT</div>
+        <div class="status">FLIGHT SYSTEM / 001</div>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h1>EXPLORE THE <span>UNKNOWN</span></h1>
+            <p>
+                Toma el control de tu nave y explora el universo.<br>
+                Acelera, gira y descubre el espacio.
+            </p>
+        </section>
+
+        <section class="game-container">
+            <div class="game-top">
+                <span>SECTOR 07 · DEEP SPACE</span>
+                <span class="live">● SYSTEM ONLINE</span>
+            </div>
+
+            <canvas id="spaceCanvas"></canvas>
+
+            <div class="controls">
+                <div class="control-card">
+                    <strong>↑ W · ACELERAR</strong>
+                    <p>Impulsa tu nave hacia adelante.</p>
+                </div>
+
+                <div class="control-card">
+                    <strong>← → A D · GIRAR</strong>
+                    <p>Cambia la dirección de vuelo.</p>
+                </div>
+
+                <div class="control-card">
+                    <strong>↓ S · FRENAR</strong>
+                    <p>Reduce la velocidad de tu nave.</p>
+                </div>
+            </div>
+
+            <div class="bottom">
+                <button id="resetButton">↻ Reiniciar nave</button>
+                <button id="pauseButton">Ⅱ Pausar simulación</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        COSMIC PILOT © 2026 · SIMULACIÓN DE MOVIMIENTO ESPACIAL
+    </footer>
+
+    <script src="minave.js"></script>
+</body>
+
+<script>
+window.addEventListener("load", function () {
+
+    const canvas = document.getElementById("spaceCanvas");
+    const ctx = canvas.getContext("2d");
+
+    if (!canvas || !ctx) {
+        alert("No se encontró el canvas de la nave.");
+        return;
+    }
+
+    let nave = {
+        x: 0,
+        y: 0,
+        angle: -Math.PI / 2,
+        vx: 0,
+        vy: 0,
+        flame: false
+    };
+
+    let keys = {};
+    let stars = [];
+    let paused = false;
+    let width = 0;
+    let height = 0;
+
+    // Ajustar el área de dibujo
+    function resize() {
+        const rect = canvas.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+
+        width = rect.width;
+        height = rect.height;
+
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        nave.x = width / 2;
+        nave.y = height / 2;
+
+        // Crear estrellas
+        stars = [];
+
+        for (let i = 0; i < 180; i++) {
+            stars.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                r: Math.random() * 1.8 + 0.5,
+                a: Math.random() * 0.7 + 0.3
+            });
+        }
+
+        draw();
+    }
+
+    // Dibujar el fondo
+    function background() {
+        const gradient = ctx.createLinearGradient(0, 0, width, height);
+
+        gradient.addColorStop(0, "#17143b");
+        gradient.addColorStop(0.5, "#30245e");
+        gradient.addColorStop(1, "#101c40");
+
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, width, height);
+
+        // Nebulosa
+        const nebula = ctx.createRadialGradient(
+            width * 0.75, height * 0.3, 2,
+            width * 0.75, height * 0.3, width * 0.5
+        );
+
+        nebula.addColorStop(0, "rgba(193, 151, 255, 0.45)");
+        nebula.addColorStop(1, "rgba(193, 151, 255, 0)");
+
+        ctx.fillStyle = nebula;
+        ctx.fillRect(0, 0, width, height);
+
+        // Estrellas
+        stars.forEach(function (star) {
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(255,255,255," + star.a + ")";
+            ctx.fill();
+        });
+
+        // Planeta
+        const px = width * 0.77;
+        const py = height * 0.28;
+        const radius = Math.min(42, width * 0.12);
+
+        ctx.beginPath();
+        ctx.ellipse(
+            px, py + 5,
+            radius * 1.5, radius * 0.35,
+            -0.2, 0, Math.PI * 2
+        );
+
+        ctx.strokeStyle = "#c7c0ff";
+        ctx.lineWidth = 5;
+        ctx.stroke();
+
+        const planet = ctx.createRadialGradient(
+            px - 13, py - 15, 2,
+            px, py, radius
+        );
+
+        planet.addColorStop(0, "#f0dcff");
+        planet.addColorStop(0.6, "#a88be8");
+        planet.addColorStop(1, "#54468c");
+
+        ctx.beginPath();
+        ctx.arc(px, py, radius, 0, Math.PI * 2);
+        ctx.fillStyle = planet;
+        ctx.fill();
+
+        // Texto decorativo
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "11px Arial";
+        ctx.fillText("SECTOR 07  /  DEEP SPACE", 18, 25);
+    }
+
+    // Dibujar nave
+    function drawShip() {
+        ctx.save();
+
+        ctx.translate(nave.x, nave.y);
+        ctx.rotate(nave.angle);
+
+        // Llama
+        if (nave.flame) {
+            ctx.beginPath();
+            ctx.moveTo(-12, -6);
+            ctx.lineTo(-34 - Math.random() * 8, 0);
+            ctx.lineTo(-12, 6);
+            ctx.closePath();
+
+            ctx.fillStyle = "#ff966b";
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(-12, -3);
+            ctx.lineTo(-25, 0);
+            ctx.lineTo(-12, 3);
+            ctx.closePath();
+
+            ctx.fillStyle = "#fff3b0";
+            ctx.fill();
+        }
+
+        // Alas
+        ctx.beginPath();
+        ctx.moveTo(-9, -7);
+        ctx.lineTo(-19, -17);
+        ctx.lineTo(5, -11);
+        ctx.lineTo(12, -5);
+        ctx.closePath();
+
+        ctx.fillStyle = "#8c78d8";
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(-9, 7);
+        ctx.lineTo(-19, 17);
+        ctx.lineTo(5, 11);
+        ctx.lineTo(12, 5);
+        ctx.closePath();
+
+        ctx.fillStyle = "#8c78d8";
+        ctx.fill();
+
+        // Cuerpo
+        ctx.beginPath();
+        ctx.moveTo(25, 0);
+        ctx.lineTo(-12, -10);
+        ctx.lineTo(-7, 0);
+        ctx.lineTo(-12, 10);
+        ctx.closePath();
+
+        ctx.fillStyle = "#b8f3f0";
+        ctx.fill();
+
+        ctx.strokeStyle = "#ffffff";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Cabina
+        ctx.beginPath();
+        ctx.ellipse(5, 0, 6, 3.5, 0, 0, Math.PI * 2);
+        ctx.fillStyle = "#ffffff";
+        ctx.fill();
+
+        ctx.restore();
+    }
+
+    // Movimiento de la nave
+    function update() {
+        if (keys["ArrowLeft"] || keys["a"] || keys["A"]) {
+            nave.angle -= 0.055;
+        }
+
+        if (keys["ArrowRight"] || keys["d"] || keys["D"]) {
+            nave.angle += 0.055;
+        }
+
+        nave.flame = false;
+
+        if (keys["ArrowUp"] || keys["w"] || keys["W"]) {
+            nave.vx += Math.cos(nave.angle) * 0.16;
+            nave.vy += Math.sin(nave.angle) * 0.16;
+            nave.flame = true;
+        }
+
+        if (keys["ArrowDown"] || keys["s"] || keys["S"]) {
+            nave.vx *= 0.94;
+            nave.vy *= 0.94;
+        }
+
+        // Velocidad máxima
+        const speed = Math.hypot(nave.vx, nave.vy);
+
+        if (speed > 5) {
+            nave.vx = nave.vx / speed * 5;
+            nave.vy = nave.vy / speed * 5;
+        }
+
+        // Fricción
+        nave.vx *= 0.985;
+        nave.vy *= 0.985;
+
+        nave.x += nave.vx;
+        nave.y += nave.vy;
+
+        // Límites
+        if (nave.x < 25) {
+            nave.x = 25;
+            nave.vx = 0;
+        }
+
+        if (nave.x > width - 25) {
+            nave.x = width - 25;
+            nave.vx = 0;
+        }
+
+        if (nave.y < 25) {
+            nave.y = 25;
+            nave.vy = 0;
+        }
+
+        if (nave.y > height - 25) {
+            nave.y = height - 25;
+            nave.vy = 0;
+        }
+    }
+
+    // Dibujar todo
+    function draw() {
+        background();
+        drawShip();
+    }
+
+    function animate() {
+        if (!paused) {
+            update();
+            draw();
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    // Teclado
+    window.addEventListener("keydown", function (e) {
+        if ([
+            "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"
+        ].includes(e.key)) {
+            e.preventDefault();
+        }
+
+        keys[e.key] = true;
+    });
+
+    window.addEventListener("keyup", function (e) {
+        keys[e.key] = false;
+    });
+
+    window.addEventListener("blur", function () {
+        keys = {};
+    });
+
+    // Reiniciar
+    const resetButton = document.getElementById("resetButton");
+
+    if (resetButton) {
+        resetButton.addEventListener("click", function () {
+            nave.x = width / 2;
+            nave.y = height / 2;
+            nave.angle = -Math.PI / 2;
+            nave.vx = 0;
+            nave.vy = 0;
+            nave.flame = false;
+            draw();
+        });
+    }
+
+    // Pausar
+    const pauseButton = document.getElementById("pauseButton");
+
+    if (pauseButton) {
+        pauseButton.addEventListener("click", function () {
+            paused = !paused;
+
+            this.textContent = paused
+                ? "▶ Continuar simulación"
+                : "Ⅱ Pausar simulación";
+
+            if (paused) {
+                draw();
+            }
+        });
+    }
+
+    // Arrancar simulación
+    resize();
+    animate();
+
+    window.addEventListener("resize", resize);
+
+});
+</script>
+</body>
+</html>
+
+
+
+</html>
